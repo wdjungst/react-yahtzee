@@ -2,7 +2,10 @@ import React from 'react';
 import One from './images/1.png';
 import Two from './images/2.png';
 import Three from './images/3.png';
-import Four from './images/4.png'; import Five from './images/5.png'; import Six from './images/6.png';
+import Four from './images/4.png';
+import Five from './images/5.png';
+import Six from './images/6.png';
+import Felt from './images/redfelt.jpg';
 
 class DiceArea extends React.Component {
   constructor(props) {
@@ -56,7 +59,7 @@ class DiceArea extends React.Component {
       let selected = this.props.keep.includes(i) ? { boxShadow: '5px 5px 5px green' } : {}
       let style = Object.assign({ width: '100%', cursor: 'pointer' }, selected);
       return(
-        <div key={i} className="dice col m2" data-val={die}>
+        <div style={{ marginTop: '20%' }} key={i} className="dice col m2" data-val={die}>
           <img
             style={style}
             src={this.mapNumToImg(die)}
@@ -67,23 +70,32 @@ class DiceArea extends React.Component {
     });
 
     return (
-      <div style={{ height: '100%' }} className="row">
-        <div className="col offset-m1"></div>
-          {dice}
+      <div
+        style={
+          {
+            height: '80vh',
+            backgroundImage: `url('${Felt} ')`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repat'
+          }
+        }
+        className="row">
         <div className="center">
           { this.props.isOver ? null :
             <button
               onClick={this.roll}
-              className="btn red col m12"
+              className="btn black col m12"
               style={ this.props.roll < 3 ? {} : { color: 'grey', cursor: 'not-allowed' }}
             >
               Roll
             </button>
           }
-          <hr />
-          <div className="col s12 center">
-            { this.props.roll === 3 ? <h4>Score this turn</h4> : null }
-          </div>
+        </div>
+        <div className="col offset-m1"></div>
+        {dice}
+        <hr />
+        <div className="col s12 center">
+          { this.props.roll === 3 ? <h4>Score this turn</h4> : null }
         </div>
       </div>
     )
