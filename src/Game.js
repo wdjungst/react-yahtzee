@@ -23,7 +23,8 @@ class Game extends React.Component {
       },
       roll: 0,
       keep: [],
-      dice: []
+      dice: [],
+      resetDice: false
     }
   }
 
@@ -59,7 +60,7 @@ class Game extends React.Component {
 
   incRoll = () => {
     if (this.state.roll < 3)
-      this.setState({ roll: ++this.state.roll });
+      this.setState({ resetDice: false, roll: ++this.state.roll });
     else
       this.setState({ roll: 0 });
   }
@@ -69,7 +70,7 @@ class Game extends React.Component {
   }
 
   reset = () => {
-    this.setState({ dice: [], roll: 0, keep: [] });
+    this.setState({ dice: [], roll: 0, keep: [], resetDice: true });
   }
 
   splitArray(dice) {
@@ -270,6 +271,7 @@ class Game extends React.Component {
         </div>
         <div className="col m8">
           <DiceArea
+            resetDice={this.state.resetDice}
             isOver={isOver}
             hold={this.hold}
             roll={this.state.roll}

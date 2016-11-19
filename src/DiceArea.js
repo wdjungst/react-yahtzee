@@ -43,7 +43,8 @@ class DiceArea extends React.Component {
     switch(num) {
       case 1:
         return this.One;
-      case 2: return this.Two;
+      case 2:
+        return this.Two;
       case 3:
         return this.Three;
       case 4:
@@ -55,7 +56,8 @@ class DiceArea extends React.Component {
     }
   }
   render() {
-    let dice = this.state.dice.map( (die, i) => {
+    let diceMap = this.props.resetDice ? [] : this.state.dice;
+    let dice = diceMap.map( (die, i) => {
       let selected = this.props.keep.includes(i) ? { boxShadow: '5px 5px 5px green' } : {}
       let style = Object.assign({ width: '100%', cursor: 'pointer' }, selected);
       return(
